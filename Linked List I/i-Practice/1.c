@@ -7,7 +7,7 @@ struct node {
 };
 void append ( struct node **, int ) ;
 void display ( struct node * ) ;
-
+struct node *temp = NULL;
 
 int main() {
 	struct node *p ;
@@ -28,12 +28,21 @@ int main() {
 }
 
 /* adds a node at the end of a linked list */
-struct node *temp = NULL;
 void append ( struct node **q, int num ){
 	//Fill in the code here
 	// q is head  node and link is next pointer
-	struct node *newNode;
-
+	struct node *newNode = (struct node *)malloc(sizeof(struct node *));
+	newNode -> data = num;
+	newNode -> link = NULL;
+	if(*q == NULL)
+	{
+		*q = newNode;
+		temp = newNode;
+		return;
+	} 
+	temp -> link = newNode;
+	temp = newNode;
+	return;
 }
 
 void display ( struct node *q ){
